@@ -325,6 +325,7 @@ func (w *watchDmChannelsTask) Execute(ctx context.Context) (err error) {
 			droppedSegment := w.req.SegmentInfos[droppedSegmentID]
 			for _, position := range channel2SeekPosition {
 				if droppedSegment != nil &&
+					droppedSegment.DmlPosition != nil &&
 					droppedSegment.DmlPosition.ChannelName == position.ChannelName &&
 					droppedSegment.DmlPosition.Timestamp > position.Timestamp {
 					droppedCheckPointInfos = append(droppedCheckPointInfos, droppedSegment)
